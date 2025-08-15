@@ -1,0 +1,22 @@
+<div class="container mx-auto mt-5 mb-5 max-w-lg">
+    @if (count($polls) > 0)
+        <ul>
+            @foreach ($polls as $poll)
+                <div class="mb-4 border rounded-md shadow-lg p-4">
+                    <h2 class="text-2xl font-bold">{{ $poll->title }}</h2>
+                    <div class="mt-2">
+                        @foreach ($poll->options as $option)
+                            <div class="flex items-center gap-2 mb-1">
+                                <div class="flex items-center gap-2">
+                                    <input type="radio" name="poll-{{ $poll->id }}" id="poll-{{ $poll->id }}" value="{{ $option->id }}" class="w-3 cursor-pointer">
+                                    <label class="flex items-center cursor-pointer" for="poll-{{ $poll->id }}">{{ $option->name }}</label>
+                                </div>
+                                <span class="text-sm text-gray-500">({{ $option->votes()->count() }} votes)</span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endforeach
+        </ul>
+    @endif
+</div>
