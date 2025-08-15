@@ -1,22 +1,34 @@
 <div>
-    <div class="mb-4">
-        <h1 class="text-xl font-bold tracking-wide mb-4">Poll Title</h1>
+    <form wire:submit.prevent="createPoll">
 
-        <input type="text" wire:model.live="title" placeholder="Enter poll question">
-    </div>
-    {{-- <p>Current Title : {{ $title }}</p> --}}
+        <div class="mb-4 shadow-sm   border rounded-md p-4">
+            <h1 class="text-xl font-bold tracking-wide mb-4">Poll Title</h1>
 
-    <div class="my-4">
-        <button class="btn" wire:click.prevent="handleClick">Add Option</button>
-    </div>
+            <input type="text" wire:model.live="title" placeholder="Enter poll question">
 
-    <div>
-        <h2 class="text-xl font-bold tracking-wide mb-4">Option</h2>
-        @foreach ( $options as $index => $option )
-            <div>
-                {{ $index + 1 }} - {{ $option }}
-            </div>
-        @endforeach
-    </div>
+            <button class="btn mt-4" wire:click.prevent="handleClick">Add Option</button>
+        </div>
+
+        <div class="border rounded-md shadow-lg p-4">
+            <h2 class="text-xl font-bold tracking-wide mb-2">Option</h2>
+            @if (count($options) > 0)
+                @foreach ($options as $index => $option)
+                    <div class="mb-4">
+                        <label>Option {{ $index + 1 }}</label>
+
+                        <div class="flex items-center gap-2 mb-4">
+                            <input type="text" wire:model.live="options.{{ $index }}" placeholder="Enter option text">
+                            <button wire:click.prevent="removeOpt({{ $index }})" class="btn">Remove</button>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <p class="text-center font-light text-gray-500 py-4">You haven't added any options yet.</p>
+            @endif
+        </div>
+
+        <div class="mt-4 flex justify-end gap-2">
+            <button type="submit" class="btn">Create Poll</button>
+        </div>
+    </form>
 </div>
-
