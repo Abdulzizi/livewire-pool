@@ -8,7 +8,7 @@
                         @foreach ($poll->options as $option)
                             <div class="flex items-center gap-2 mb-1">
                                 <div class="flex items-center gap-3 mb-2">
-                                    <button class="btn">Vote</button>
+                                    <button wire:click.prevent="vote({{ $option->id }})" class="btn">Vote</button>
                                     <p>{{ $option->name }}</p>
                                 </div>
                                 <span class="text-sm text-gray-500">({{ $option->votes()->count() }} votes)</span>

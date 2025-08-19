@@ -38,6 +38,7 @@
         @if (count($options) > 0)
             <div class="mt-4 flex justify-end gap-2">
                 <button type="submit" class="btn">Create Poll</button>
+                
             </div>
         @endif
 

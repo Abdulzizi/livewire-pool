@@ -10,7 +10,9 @@ class Vote extends Model
 {
     use HasFactory;
 
-    public function votes(): BelongsTo
+    protected $fillable = ['option_id'];
+
+    public function option(): BelongsTo
     {
         return $this->belongsTo(Option::class);
     }
