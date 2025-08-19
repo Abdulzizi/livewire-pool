@@ -9,7 +9,6 @@ class CreatePoll extends Component
 {
     private $pollModel;
     public $title;
-    // public $options = ['Initial Option', 'Second Option'];
     public $options = [];
 
     protected $rules = [
@@ -72,5 +71,7 @@ class CreatePoll extends Component
         // Reset the form
         $this->title = '';
         $this->options = [];
+
+        $this->dispatch('pollCreated');
     }
 }

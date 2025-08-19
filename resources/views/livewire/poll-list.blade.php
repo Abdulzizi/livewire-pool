@@ -7,9 +7,9 @@
                     <div class="mt-2">
                         @foreach ($poll->options as $option)
                             <div class="flex items-center gap-2 mb-1">
-                                <div class="flex items-center gap-2">
-                                    <input type="radio" name="poll-{{ $poll->id }}" id="poll-{{ $poll->id }}" value="{{ $option->id }}" class="w-3 cursor-pointer">
-                                    <label class="flex items-center cursor-pointer" for="poll-{{ $poll->id }}">{{ $option->name }}</label>
+                                <div class="flex items-center gap-3 mb-2">
+                                    <button class="btn">Vote</button>
+                                    <p>{{ $option->name }}</p>
                                 </div>
                                 <span class="text-sm text-gray-500">({{ $option->votes()->count() }} votes)</span>
                             </div>
@@ -18,5 +18,8 @@
                 </div>
             @endforeach
         </ul>
+
+    @else
+        <p class="text-gray-500">No polls available.</p>
     @endif
 </div>

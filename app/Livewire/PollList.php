@@ -8,8 +8,10 @@ use Livewire\Component;
 class PollList extends Component
 {
     public $polls;
-
     protected $PollModel;
+    protected $listeners = [
+        'pollCreated' => 'mount',
+    ];
 
     public function __construct()
     {
@@ -19,7 +21,6 @@ class PollList extends Component
     public function mount()
     {
         $this->getPolls();
-        // $this->polls = $this->PollModel->all();
     }
     public function render()
     {

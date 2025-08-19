@@ -42,7 +42,7 @@
         @endif
 
         @if (session()->has('message'))
-            <div class="mt-4 text-green-500">
+            <div class="mt-4 text-green-500" x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)">
                 {{ session('message') }}
             </div>
         @endif
